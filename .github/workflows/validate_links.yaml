@@ -1,0 +1,17 @@
+name: Validate Links
+
+on: [push]
+
+jobs:
+  validate_links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Validate Links
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd $GITHUB_WORKSPACE/src
+          npm install
+          npm run validate_links
